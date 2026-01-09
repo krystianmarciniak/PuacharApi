@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PuacharApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e78867ba04dc8f46358ad33227d6af066d124b95")]
 [assembly: System.Reflection.AssemblyProductAttribute("PuacharApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PuacharApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

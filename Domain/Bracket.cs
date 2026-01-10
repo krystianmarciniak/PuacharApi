@@ -12,7 +12,6 @@ public class Bracket
     if (participants.Count < 2)
       throw new InvalidOperationException("Brak wystarczającej liczby uczestników.");
 
-    // Prosto: parujemy po kolei (B-approach: czytelnie, bez przesady)
     Matches.Clear();
 
     int round = 1;
@@ -21,7 +20,6 @@ public class Bracket
       var p1 = participants[i];
       User? p2 = (i + 1 < participants.Count) ? participants[i + 1] : null;
 
-      // Jeżeli nieparzysta liczba, ostatni dostaje "wolny los" (bye)
       var match = new Match
       {
         Round = round,
@@ -34,7 +32,6 @@ public class Bracket
     }
   }
 
-  // ⭐ Diagram → później query albo mutation (u prowadzącego: metoda z diagramu = mutacja)
   public List<Match> GetMatchesForRound(int round)
       => Matches.Where(m => m.Round == round).ToList();
 }

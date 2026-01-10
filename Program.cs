@@ -1,4 +1,4 @@
-using PuacharApi.GraphQL;
+using PucharApi.GraphQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +9,6 @@ builder.Services
 var app = builder.Build();
 
 app.MapGraphQL("/graphql");
-
-app.MapGet("/", () => "PuacharApi działa. Wejdź na /graphql");
+app.MapGet("/", () => "PucharApi działa. Wejdź na /graphql");
 
 app.Run();

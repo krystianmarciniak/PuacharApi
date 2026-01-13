@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using HotChocolate.Authorization;
 using Microsoft.EntityFrameworkCore;
 using PucharApi.Application.Auth;
 using PucharApi.Domain;
@@ -49,6 +51,24 @@ public class Mutation
 
     var token = jwt.CreateToken(user);
     return new AuthPayload(token, user);
+  }
+
+  [Authorize]
+  public async Task<User> Me(
+         ClaimsPrincipal principal,
+         [Service] PucharDbContext db)
+  {
+    var idStr = principal.FindFirstValue(ClaimTypes.NameIdentifier);
+
+    if (string.IsNullOrWhiteSpace(idStr) || !int.TryParse(idStr, out var userId))
+      throw new GraphQLException("Brak poprawnego identyfikatora użytkownika w tokenie.");
+
+    var user = await db.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+    if (user is null)
+      throw new GraphQLException("Użytkownik nie istnieje.");
+
+    return user;
   }
 }
 

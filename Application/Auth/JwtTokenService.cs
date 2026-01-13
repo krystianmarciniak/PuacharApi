@@ -25,7 +25,9 @@ public class JwtTokenService
     var claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email)
+    new Claim(ClaimTypes.Email, user.Email),
+    new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+    new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
         };
 
     var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));

@@ -26,10 +26,10 @@ builder.Services
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-
             ValidIssuer = jwt["Issuer"],
             ValidAudience = jwt["Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
+            ClockSkew = TimeSpan.FromSeconds(30),
         };
     });
 
@@ -39,10 +39,10 @@ builder.Services.AddScoped<JwtTokenService>();
 // GraphQL
 builder.Services
     .AddGraphQLServer()
-    .ModifyRequestOptions(o => o.IncludeExceptionDetails = true)
-    .AddAuthorization()         
+    .AddAuthorization()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>();
+//.ModifyRequestOptions(o => o.IncludeExceptionDetails = true)
 
 var app = builder.Build();
 
